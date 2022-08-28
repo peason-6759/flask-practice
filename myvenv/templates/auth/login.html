@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Peason-Login{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{message}}
+    </div>
+    {% endfor %}
+
+    {% block page_content %}
+    <div class="page_header">
+        <h1>Login</h1>
+    </div>
+    <div>
+        <form method="POST">
+            {{form.hidden_tag()}} 
+            {{form.email.label}}
+            {{form.email(id='email-field',type='email')}}
+            {{form.password.label}}
+            {{form.password(id='password-field')}}
+            {{form.remember_me.label}}
+            {{form.remember_me(id='checkbox-field')}}
+            {{form.submit()}}
+        </form>
+    </div>
+
+    <p>
+        New user?
+        <a href="{{url_for('auth.register')}}">
+            Click here to register
+        </a>
+    </p>
+    
+    {% endblock %}
+</div>
+{% endblock %}
+

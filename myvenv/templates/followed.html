@@ -1,0 +1,34 @@
+{%extends 'base.html'%}
+{%import "_macros.html" as macros%} 
+
+{%block page_content%}
+<ul class="followed">
+    {%for follow in followed%}
+    <li class="followed">
+        <div class="profile-thumbnail">
+            <a href="{{ url_for('main.profile', user_id=follow['user'].id)}}">                
+                <img class="img-rounded profile-thumbnail" src="{{ follow['user'].gravatar(size=40) }}">
+            </a>
+        </div>
+
+        <div class="followed-name">
+            {{follow['user'].first_name}}
+        </div>
+        
+        <div class="followed-from-now">
+            {{moment(follow['timestamp']).fromNow()}}
+        </div>
+    {%else%}
+        <h3>You haven't following any users!</h3>
+    {%endfor%}
+    </li>
+</ul>
+{%endblock%}
+
+
+{%block scripts%}
+{{super()}}
+{{moment.include_moment()}}
+{{moment.locale('zh-tw')}}
+{%endblock%}
+    

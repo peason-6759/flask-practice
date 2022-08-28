@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Peason-Login{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Dear,{{client.first_name}}</h2>
+    <h3>Your Account haven't been confirmed yet.</h3>
+    <p>Take look of your email to recieve the confrimation link</p>
+    <p>
+        or Need another confrimation email, click 
+        <a href="{{url_for('auth.resend_confirmation')}}" >Here</a>
+    </p>
+</div>
+{% endblock %}

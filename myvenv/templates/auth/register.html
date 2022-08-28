@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Peason-Register{% endblock %}
+
+
+{% block content %}
+<div class="container">
+
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{message}}
+    </div>
+    {% endfor %}
+
+    {% block page_content %}
+    <div class="page_header">
+        <h1>Register</h1>
+    </div>
+    <div>
+        <form method="POST">
+            {{form.hidden_tag()}}
+            {{form.email.label}}
+            {{form.email(id='email-field',type='email')}}
+            {{form.firstname.label}}
+            {{form.firstname(id='firstname-field')}}
+            {{form.lastname.label}}
+            {{form.lastname(id='lastname-field')}}
+            {{form.password.label}}
+            {{form.password(id='password-field')}}
+            {{form.repassword.label}}
+            {{form.repassword(id='repeat_password-field')}}
+            {{form.submit()}}
+        </form>
+    </div>
+    {% endblock %}
+{% endblock %}
+

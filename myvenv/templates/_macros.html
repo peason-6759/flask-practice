@@ -1,0 +1,42 @@
+<!--pagination是sqlalchemy的-->
+{% macro pagination_widget(pagination,endpoint) %}
+<ul class="pagination">
+    <!--翻頁功能，laquo上頁< raquo下頁>-->
+    <li {% if not pagination.has_prev %} class="disabled" {% endif %}>
+        <a href="{%if pagination.has_prev%} 
+                    {{url_for(endpoint,page=pagination.page-1,**kwargs)}} 
+                {%else%}#
+                    {%endif%}">
+        &laquo;</a>        
+    </li>
+    <!--頁碼-->
+    <!--iter_pages功能能做跳過來使用，他會給一個算法，例如你在第幾頁，有太後面or前面的部分就不再為iter pages的範圍 自行&hellip省略掉-->
+    {% for p in pagination.iter_pages() %}
+        {%if p %}
+            {%if p in pagination.iter_pages()%}
+            <li class="active">
+                <a href="{{url_for(endpoint,page=p,**kwargs)}}">{{p}}</a>
+            </li>
+            {%else%}
+            <li class="deactive">
+                <a href="{{url_for(endpoint,page=p,**kwargs)}}">{{p}}</a>
+            </li>
+            {%endif%}
+        {%else%}
+            <!--省略號(...)-->
+            <li class="disabled">
+                <a href="#">&hellip;</a>
+            </li>
+        {%endif%}
+    {%endfor%}
+
+    <li {% if not pagination.has_next %} class="disabled"{% endif %}>
+        <a href="{%if pagination.has_next%} 
+                    {{url_for(endpoint,page=pagination.page+1,**kwargs)}} 
+                {%else%}
+                    #
+                    {%endif%}">
+        &raquo;</a>        
+    </li>
+</ul>
+{%endmacro%}

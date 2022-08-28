@@ -1,0 +1,32 @@
+{%extends 'user.html'%}
+
+{% block page_content %}
+    <div class="page_header">
+        <h1>Admin - Edit Profile</h1>
+    </div>
+    <div>
+        <form method="POST">
+            {{form.hidden_tag()}}
+            {{form.email.label}}
+            {{form.email(id='email-field')}}
+            {{form.first_name.label}}
+            {{form.first_name(id='firstname-field')}}
+            {{form.last_name.label}}
+            {{form.last_name(id='lastname-field')}}
+            {{form.student_id.label}}
+            {{form.student_id(id='studentid-field')}}
+            {{form.member_added_year.label}}
+            {{form.member_added_year(id='addedyear-field')}}
+            {{form.member_id.label}}
+            {{form.member_id(id='memberid-field')}}
+            {{form.confirmed.label}}
+            {{form.confirmed(id='confrmid-field')}}
+            {{form.role.label}}
+            {{form.role(id='role-field')}}
+            {{form.about_me.label}}
+            {{form.about_me(id='aboutme-field')}}
+            {{form.submit()}}
+        </form>
+    </div>
+    {% endblock %}
+
