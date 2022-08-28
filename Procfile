@@ -1,1 +1,1 @@
-web: waitress-serve --port=8000 peasonMain:app
+web: waitress-serve --port=$PORT peasonMain:app
