@@ -41,6 +41,9 @@ class Config: #通用配置
     #sql timeout debug
     SQLALCHEMY_RECORD_QUERIES=True
     FLASK_SLOW_DB_QUERY_TIME=0.5
+
+    SSL_REDIRECT = False
+
     @staticmethod  #無需先呼叫config 要設定就直接叫staticmethod就好
     def init_app(app):
         pass
@@ -57,6 +60,7 @@ class TestingConfig(Config):
 
 class ProductionConfig(Config):
     SQLALCHEMY_DATABASE_URI=os.environ.get('DEV_DATABASE_URL') or "mariadb+mariadbconnector://root:@127.0.0.1:3306/client"
+
     @classmethod
     def init_app(cls,app):
         import logging
@@ -77,6 +81,22 @@ class ProductionConfig(Config):
                 secure=secure)
         mail_hendler.setLevel(logging.ERROR) 
         app.logger.addHandler(mail_hendler)
+
+class HerokuConfig(ProductionConfig):
+    @classmethod
+    def init_app(cls, app):
+        ProductionConfig.init_app(app)
+
+        import logging #配置先前製作的登入失敗重大敬告及數據庫超時日誌 
+        from logging import StreamHandler        
+        file_handler = StreamHandler()        
+        file_handler.setLevel(logging.INFO)        
+        app.logger.addHandler(file_handler)
+        
+        from werkzeug.middleware.proxy_fix import ProxyFix        
+        app.wsgi_app = ProxyFix(app.wsgi_app)
+        
+    SSL_REDIRECT = True if os.environ.get('DYNO') else False
 
 configModel={
     'development':DevelopmentConfig,
