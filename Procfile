@@ -1,1 +1,1 @@
-web: gunicorn peasonMain:app
+web: waitress-serve --port=$PORT flasky:app
