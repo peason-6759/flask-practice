@@ -1,5 +1,5 @@
 import os
-from gmailsender.OAUTHDEV import Create_Service
+from myvenv.gmailsender.OAUTHDEV import Create_Service
 
 basedir=os.path.abspath(os.path.dirname(__file__))
 class Config: #通用配置
