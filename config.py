@@ -59,7 +59,8 @@ class TestingConfig(Config):
     SQLALCHEMY_DATABASE_URI=os.environ.get('TEST') or "mariadb+mariadbconnector://root:@127.0.0.1:3306/client_test"
 
 class ProductionConfig(Config):
-    SQLALCHEMY_DATABASE_URI=os.environ.get('DEV_DATABASE_URL') or "mariadb+mariadbconnector://root:@127.0.0.1:3306/client"
+    SQLALCHEMY_DATABASE_URI=os.environ.get('DEV_DATABASE_URL') or \
+        "postgres://ustvaltavxjysr:0124fda4f9316eedf3bef570187af477e4a5c09a53fbad94855cfeee1abb7784@ec2-44-194-4-127.compute-1.amazonaws.com/client"
 
     @classmethod
     def init_app(cls,app):
