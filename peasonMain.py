@@ -11,8 +11,8 @@ if os.environ.get('FLASK_COVERAGE'):
     COV=coverage.coverage(branch=True,include='myvenv/*',omit='myvenv/Lib/*') 
     COV.start()
     
-from myvenv import create_app,db
 from myvenv.models import Clients,Equips,Roles,Permission
+from myvenv import create_app,db
 from flask_migrate import Migrate,upgrade
 
 app=create_app(os.getenv('PEASON_CONFIG') or 'default')
