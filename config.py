@@ -51,7 +51,7 @@ class Config: #通用配置
 class DevelopmentConfig(Config):
     #app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     SQLALCHEMY_DATABASE_URI=os.environ.get('DEV_DATABASE_URL') or \
-        "postgresql://ustvaltavxjysr:0124fda4f9316eedf3bef570187af477e4a5c09a53fbad94855cfeee1abb7784@ec2-44-194-4-127.compute-1.amazonaws.com/d21c54embqm9mv"
+        "mariadb+mariadbconnector://root:@127.0.0.1:3306/client"
 
 class TestingConfig(Config):
     TESTING=True
@@ -90,7 +90,7 @@ class HerokuConfig(ProductionConfig):
     def init_app(cls, app):
         ProductionConfig.init_app(app)
 
-        import logging #配置先前製作的登入失敗重大敬告及數據庫超時日誌 
+        import logging #配置先前製作的登入失敗重大警告及數據庫超時日誌 
         from logging import StreamHandler        
         file_handler = StreamHandler()        
         file_handler.setLevel(logging.INFO)        
