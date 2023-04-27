@@ -16,7 +16,6 @@ def Create_Service(client_secret_file, api_name, api_version, *scopes, prefix=''
 	
 	cred = None
 	working_dir = os.path.dirname(__file__)
-	print(working_dir)
 	token_dir = 'token files'
 	pickle_file = f'token_{API_SERVICE_NAME}_{API_VERSION}{prefix}.pickle'
 

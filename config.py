@@ -75,12 +75,13 @@ class ProductionConfig(Config):
             if getattr(cls,'MAIL_USE_TLS',None):
                 secure=()
             mail_hendler=SMTPHandler(
-                mailhost=(cls.MAIL_SERVER,cls.MAIL_PORT),
-                fromaddr=cls.PEASON_MAIL_SENDER,
-                toaddrs=[cls.PEASON_ADMIN],
-                subject=cls.Peason_SUBJECT_PREFIX + ' Application Error',
-                credentials=credentials,
-                secure=secure)
+                            mailhost=(cls.MAIL_SERVER,cls.MAIL_PORT),
+                            fromaddr=cls.PEASON_MAIL_SENDER,
+                            toaddrs=[cls.PEASON_ADMIN],
+                            subject=cls.Peason_SUBJECT_PREFIX + ' Application Error',
+                            credentials=credentials,
+                            secure=secure
+                            )
         mail_hendler.setLevel(logging.ERROR) 
         app.logger.addHandler(mail_hendler)
 

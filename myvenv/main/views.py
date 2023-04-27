@@ -8,7 +8,7 @@ from ..decorators import admin_required,permission_required
 from .. import db
 from sqlalchemy import desc,asc
 from flask_sqlalchemy import get_debug_queries
-@main.route('/',methods=['GET','POST'])  #拿到資料重整
+@main.route('/',methods=['PUT','POST'])  #拿到資料重整
 def index():
     form=PostForm()
     if form.validate_on_submit() and current_user.can(Permission.COMMET):  #這是輸入完資料才能(validate....=true)送進來處理，為"post重定量、get模式，在submit之前，可對上一次輸入的資料做想做的事(ex存進資料庫...)

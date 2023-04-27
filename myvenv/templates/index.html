@@ -57,6 +57,8 @@
     <p>The local data/times is {{moment(current_time).format("LLL")}}.</p>
     <p>You are there from {{moment(current_time).fromNow(refresh=True)}} </p>
     {%endblock%}
+
+    <script src='test.js'></script>
 </body>
 {%endblock%}
 
@@ -67,4 +69,5 @@
 {{moment.locale('zh-tw')}}
 {{pagedown.include_pagedown()}} <!--再輸入下方顯示富文本預覽-->
 {%endblock%}
+
     
