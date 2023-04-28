@@ -51,7 +51,7 @@ class Config: #通用配置
 class DevelopmentConfig(Config):
     #app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     SQLALCHEMY_DATABASE_URI=os.environ.get('DEV_DATABASE_URL') or \
-        "postgres://buhxnuhetj:_P5e8a2s5on5825@flaskblogpinshian-server.postgres.database.azure.com/postgres?sslmode=require"
+        "postgresql://buhxnuhetj:_P5e8a2s5on5825@flaskblogpinshian-server.postgres.database.azure.com/postgres?sslmode=require"
 
 class TestingConfig(Config):
     TESTING=True
