@@ -1,6 +1,7 @@
 import os
 from myvenv.gmailsender.OAUTHDEV import Create_Service
-
+from dotenv import load_dotenv
+load_dotenv()
 basedir=os.path.abspath(os.path.dirname(__file__))
 class Config: #通用配置
 
@@ -51,14 +52,14 @@ class Config: #通用配置
 class DevelopmentConfig(Config):
     #app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     SQLALCHEMY_DATABASE_URI=os.environ.get('DEV_DATABASE_URL') or \
-        'mysql+pymysql://peason6759:_P5e8a2s5on5825@flaskpractice.mysql.database.azure.com/blogflask?ssl_ca=ssl_cl/DigiCertGlobalRootCA.crt.pem'
-            # .format(
-            # dbuser=os.environ['DBUSER'],
-            # dbpass=os.environ['DBPASS'],
-            # dbhost=os.environ['DBHOST'],
-            # dbname=os.environ['DBNAME']
-        # )
-
+        'mysql+pymysql://{dbuser}:{dbpass}@{dbhost}/{dbname}?ssl_ca={ssl_ca}'\
+            .format(
+                dbuser=os.getenv('DBUSER'),
+                dbpass=os.getenv('DBPASS'),
+                dbhost=os.getenv('DBHOST'),
+                dbname=os.getenv('DBNAME'),
+                ssl_ca=os.getenv('SSL_CA')
+            )
 
 class TestingConfig(Config):
     TESTING=True
@@ -67,8 +68,7 @@ class TestingConfig(Config):
     SQLALCHEMY_DATABASE_URI=os.environ.get('TEST') or "mariadb+mariadbconnector://root:@127.0.0.1:3306/client_test"
 
 class ProductionConfig(Config):
-    SQLALCHEMY_DATABASE_URI=os.environ.get('DEV_DATABASE_URL') or \
-        "postgresql://ustvaltavxjysr:0124fda4f9316eedf3bef570187af477e4a5c09a53fbad94855cfeee1abb7784@ec2-44-194-4-127.compute-1.amazonaws.com/d21c54embqm9mv"
+    SQLALCHEMY_DATABASE_URI=os.environ.get('DEV_DATABASE_URL')
 
     @classmethod
     def init_app(cls,app):
