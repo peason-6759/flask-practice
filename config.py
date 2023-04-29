@@ -51,7 +51,7 @@ class Config: #通用配置
 class DevelopmentConfig(Config):
     #app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     SQLALCHEMY_DATABASE_URI=os.environ.get('DEV_DATABASE_URL') or \
-        'postgresql://peason6759:_P5e8a2s5on5825@peason.database.windows.net:5432/peasonFlaskPracticeDB'
+        'postgresql://buhxnuhetj:_P5e8a2s5on5825@flaskblogpinshian-server.postgres.database.azure.com:5432/postgres'
             # .format(
             # dbuser=os.environ['DBUSER'],
             # dbpass=os.environ['DBPASS'],
